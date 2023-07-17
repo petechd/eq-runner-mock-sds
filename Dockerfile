@@ -4,6 +4,7 @@ FROM python:3.11-slim
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV HTTP_KEEP_ALIVE 650
 
 # Install system dependencies
 RUN apt-get update \
@@ -29,4 +30,4 @@ COPY . /app
 EXPOSE 5003
 
 # Start Gunicorn to serve the application
-CMD ["gunicorn", "app.main:app", "-b", "0.0.0.0:5003", "--worker-class", "uvicorn.workers.UvicornWorker"]
+CMD ["gunicorn", "app.main:app", "-b", "0.0.0.0:5003", "--worker-class", "uvicorn.workers.UvicornWorker", "--timeout", "0"]
