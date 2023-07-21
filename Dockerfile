@@ -1,4 +1,4 @@
-# Use the official Python 3.9 image as the base image
+# Use the official Python 3.11 image as the base image
 FROM python:3.11-slim
 
 # Set environment variables
