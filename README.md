@@ -62,3 +62,11 @@ To lint the code using black, run the following command:
 ```bash
 make lint
 ```
+
+### Testing
+
+To run the unit tests, run the following command:
+
+```bash
+make test
+```

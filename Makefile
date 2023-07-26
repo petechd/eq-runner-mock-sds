@@ -6,3 +6,7 @@ format:
 
 lint:
 	poetry run black --check .
+
+test:
+	poetry run pytest .
+

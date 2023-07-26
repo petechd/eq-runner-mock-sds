@@ -10,6 +10,34 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lint-test:
+    name: Lint and Test
+    runs-on: ubuntu-latest
+
+    env:
+      PYTHON_VERSION: $(cat .python-version)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Poetry
+        run: curl -sSL https://install.python-poetry.org | python3 -
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Lint
+        run: make lint
+
+      - name: Run pytest
+        run: make test
+
   docker-push:
     runs-on: ubuntu-22.04
     steps:
