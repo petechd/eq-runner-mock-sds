@@ -29,22 +29,22 @@ def get_sds_data(
     }
 
     if filename := guid_filename_map.get(str(dataset_id)):
-        return encrypt_mock_data(load_mock_data(f"scripts/mock_data/{filename}.json"))
+        return encrypt_mock_data(load_mock_data(f"mock_data/{filename}.json"))
 
     raise HTTPException(status_code=404)
 
 
 @app.get("/v1/dataset_metadata")
-def get_sds_dataset_ids(survey_id: str = Query()) -> dict:
+def get_sds_dataset_ids(survey_id: str = Query()) -> list[dict]:
     return load_mock_sds_dataset_metadata(survey_id)
 
 
-def load_mock_data(filename: str) -> dict:
+def load_mock_data(filename: str) -> dict | list:
     with open(filename, encoding="utf-8") as mock_data_file:
         return json.load(mock_data_file)
 
 
-def load_mock_sds_dataset_metadata(survey_id: str) -> dict:
+def load_mock_sds_dataset_metadata(survey_id: str) -> list[dict]:
     if survey_id == "123":
         return load_mock_data("mock_data/supplementary_dataset_metadata_response.json")
 
