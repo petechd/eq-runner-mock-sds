@@ -11,11 +11,7 @@ concurrency:
 
 jobs:
   lint-test:
-    name: Lint and Test
     runs-on: ubuntu-latest
-
-    env:
-      PYTHON_VERSION: $(cat .python-version)
 
     steps:
       - uses: actions/checkout@v3
